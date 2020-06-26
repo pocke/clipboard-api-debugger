@@ -1,0 +1,27 @@
+<h1>Clipboard API debugger</h1>
+
+<textarea id="pastearea" cols="100" rows="10" placeholder="paste anything"></textarea>
+
+<h2>text/plain</h2>
+
+<textarea id="result-text-plain" rows="10" cols="100" disabled></textarea>
+
+<h2>text/html</h2>
+
+<textarea id="result-text-html" rows="10" cols="100" disabled></textarea>
+
+
+
+
+
+<script>
+const target = document.querySelector('#pastearea');
+target.addEventListener('paste', (event) => {
+  const data = event.clipboardData || window.clipboardData;
+  const text = data.getData('text/plain');
+  const html = data.getData('text/html');
+
+  document.querySelector('#result-text-plain').value = text;
+  document.querySelector('#result-text-html').value = html;
+})
+</script>
